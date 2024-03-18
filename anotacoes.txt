@@ -1,0 +1,98 @@
+operadores
+
+BashOperator: executa um comando de shel ou subscriptions
+PythonOperator: executa função PythonOperator
+
+
+interagindo com as Dags pela CLI
+docker ps => lista os containers
+docker exec -it <id container> bash => abre o modo bash do container
+
+bash airflow 
+airflow dag list => listar as dags existentes
+airflow dags list-jobs => listar os jobs das dags
+airflow dags next-execution <name da dag> => informa a proxima execução da DAG, caso ela esteja pausada será exibido uma mensagem informando 
+airflow dags next-execution defaultargs => informa argumento das dags
+airflow dags list-runs -d <nome da dag> => lista as execuções da dag
+airflow dags unpause <nome da dag> => ativa a execução da dag
+airflow dags trigger <nome da dag> => executa uma dag
+airflow tasks list <nome da dag> => lista as taks de uma dag
+airflow tasks test <nome da dag> tsk1 <data>
+airflow config list => acessar configurações do airflow
+airflow pools list => lista os pools
+airflow connection list => lista connections
+airflow variable list => lista as variaveis
+airflow => exibe os principais comandos
+airflow cheat-sheet => exibe exemplos dos principais comandos
+
+
+
+
+
+sessões de configuração
+core => configurações principais
+webserver => interface grafica
+scheduler => agendamento
+
+
+as alterações feitas no arquivo 
+docker-compose.yaml 
+sobrescreve as alterações originais
+
+
+usar vriavel de ambiente
+
+-AIRFLOW__
+-SEÇÃO__
+-CONFIGURAÇÃO
+
+exemplos
+[smtp]
+smtp_host = localhost
+
+AIRFLOW__SMTP__SMTP_HOST
+
+CORE 
+dags_folder = /path/to/your/dags/folder
+
+
+executers
+CeleryExecutor: Execução distribuida em cluster
+SequentialExecutor: Permite apenas execução sequencial
+LocalExecuter: Permite execução em paralelo, mas somente local
+KubertenesExecutor:Executa em ambientes kubernets
+
+
+Plugins
+Estende a funcionalidade do airflow
+Pode encapular codigo para reutilização
+
+
+boas praticas
+criar dags em arquivos individuais
+sempre que possivel usar plugins , funções etc para reaproveitar códigos
+
+idempotentes
+uma dag pode ser executada varias vezes sem problemas
+ex. ser independente da origem e destino dos dados
+
+configurações 
+catchup=false
+otimize a parelelização
+retrise
+cuide de erros
+gere alertas
+use pools e defina prioridades
+teste suas dags antes da implantação
+monitore a performance
+documente seu codigo
+use autenticação e autorização
+-usuario, roles, ações , permissoes
+nao salve senhas no codigo , use o sistema de conexoes do airflow
+
+
+airflow gerenciado
+
+
+
+
